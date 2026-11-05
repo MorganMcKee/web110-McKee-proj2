@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Food & Culture | Discover Shibuya</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        /* Dining Page Styling */
+
+        .dining-intro {
+            text-align: center;
+            padding: 55px 20px;
+            background-color: #fff3c4;
+        }
+
+        .dining-intro .subtitle {
+            color: #d96359;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .dining-intro h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: #49352f;
+        }
+
+        .dining-intro h1 span {
+            color: #d96359;
+        }
+
+        .dining-intro p.description {
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        .food-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 45px 25px 65px;
+        }
+
+        .food-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .food-heading h2 {
+            font-size: 30px;
+            color: #49352f;
+        }
+
+        .food-heading p {
+            margin-top: 8px;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .food-card {
+            background-color: white;
+            border: 2px solid #fff3c4;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            border-color: #f08075;
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .food-content {
+            padding: 22px;
+        }
+
+        .food-content h3 {
+            font-size: 23px;
+            margin-bottom: 10px;
+            color: #49352f;
+        }
+
+        .food-content p {
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .food-tag {
+            display: inline-block;
+            background-color: #fff3c4;
+            color: #49352f;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .dining-note {
+            text-align: center;
+            background-color: #fff3c4;
+            padding: 35px 25px;
+            border-radius: 20px;
+            margin-top: 45px;
+        }
+
+        .dining-note h2 {
+            margin-bottom: 10px;
+            font-size: 25px;
+        }
+
+        .dining-note p {
+            max-width: 650px;
+            margin: auto;
+        }
+
+        @media (max-width: 800px) {
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dining-intro h1 {
+                font-size: 34px;
+            }
+
+            .food-card img {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Header -->
+    <header class="header">
+        <a href="home.html" class="logo">
+            Discover Shibuya <span></span>
+        </a>
+
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="map.html">Places to Visit</a>
+            <a href="dining.html" class="active">Food & Culture</a>
+        </nav>
+    </header>
+
+    <!-- Introduction -->
+    <section class="dining-intro">
+        <p class="subtitle">A TASTE OF JAPAN</p>
+
+        <h1>Discover Shibuya's <span>Food</span></h1>
+
+        <p class="description">
+            Trying local food is a great way to experience a new
+            place. Shibuya has plenty of options for anyone wanting
+            to try Japanese food during their visit. This page
+            covers a few popular choices that are worth checking out.
+        </p>
+    </section>
+
+    <main class="food-section">
+
+        <section>
+            <div class="food-heading">
+                <h2>Japanese Foods to Try</h2>
+
+                <p>
+                    Here are a few foods you might want to try while
+                    visiting Shibuya.
+                </p>
+            </div>
+
+            <div class="food-grid">
+
+                <!-- Japanese Crepes -->
+                <article class="food-card">
+                    <img
+                        src="Images/Crepes.jpg"
+                        alt="Sweet Japanese crepes"
+                        loading="lazy"
+                    >
+
+                    <div class="food-content">
+                        <h3>Japanese Crepes</h3>
+
+                        <p>
+                            Japanese crepes are a popular treat in
+                            Tokyo, especially for people looking for
+                            something sweet. They are usually folded
+                            into a cone and filled with different
+                            toppings. Their shape also makes them
+                            easy to enjoy while walking around Shibuya.
+                        </p>
+
+                        <span class="food-tag">Sweet Treat 🍓</span>
+                    </div>
+                </article>
+
+                <!-- Ramen -->
+                <article class="food-card">
+                    <img
+                        src="images/Ramen.jpg"
+                        alt="A bowl of Japanese ramen"
+                        loading="lazy"
+                    >
+
+                    <div class="food-content">
+                        <h3>Ramen</h3>
+
+                        <p>
+                            Ramen is a Japanese noodle soup that is
+                            especially nice when you want a warm meal.
+                            The noodles are served in a flavorful
+                            broth, with toppings that vary depending
+                            on where you eat. There are many ramen
+                            restaurants around Tokyo worth trying.
+                        </p>
+
+                        <span class="food-tag">Warm & Savory 🍜</span>
+                    </div>
+                </article>
+
+                <!-- Yakitori -->
+                <article class="food-card">
+                    <img
+                        src="images/yakitori.jpg"
+                        alt="Japanese grilled chicken skewers"
+                        loading="lazy"
+                    >
+
+                    <div class="food-content">
+                        <h3>Yakitori</h3>
+
+                        <p>
+                            Yakitori is grilled chicken served on
+                            skewers and is a common choice at Japanese
+                            restaurants. It is often seasoned with
+                            salt or coated in a sweet and savory
+                            sauce. It is a good option if you want
+                            to try something different during your
+                            visit to Shibuya.
+                        </p>
+
+                        <span class="food-tag">Grilled Favorite 🍢</span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Dining Tip -->
+        <section class="dining-note">
+            <h2>A Little Food Tip!</h2>
+
+            <p>
+                If you have time, take a look around the streets
+                near Shibuya's main attractions. You might find
+                a restaurant that catches your interest. It is
+                also a good idea to check its opening hours before
+                visiting so you know when you can stop by.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Discover Shibuya · Your Tokyo Travel Guide</p>
+    </footer>
+
+</body>
+</html>
