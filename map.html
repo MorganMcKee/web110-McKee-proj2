@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Places to Visit | Discover Shibuya</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #fffaf0;
+            color: #49352f;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 8%;
+            background-color: #fff3c4;
+            border-bottom: 3px solid #f08075;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #49352f;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #f08075;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #49352f;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #d96359;
+        }
+
+        .page-intro {
+            text-align: center;
+            padding: 55px 20px 35px;
+            background-color: #fff3c4;
+        }
+
+        .subtitle {
+            color: #d96359;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        h1 span {
+            color: #d96359;
+        }
+
+        .page-intro p.description {
+            max-width: 650px;
+            margin: auto;
+            font-size: 16px;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 25px 60px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .section-heading h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        #map {
+            width: 100%;
+            height: 480px;
+            border: 5px solid white;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(73, 53, 47, 0.12);
+            z-index: 1;
+        }
+
+        .map-note {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #79655d;
+        }
+
+        .places-heading {
+            text-align: center;
+            margin: 55px 0 25px;
+        }
+
+        .places-heading h2 {
+            font-size: 30px;
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .place-card {
+            background-color: white;
+            border: 2px solid #fff3c4;
+            border-radius: 18px;
+            padding: 25px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .place-card:hover {
+            transform: translateY(-5px);
+            border-color: #f08075;
+        }
+
+        .place-number {
+            display: inline-block;
+            background-color: #f08075;
+            color: white;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .place-card h3 {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .place-card p {
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .map-button {
+            display: inline-block;
+            background-color: #fff3c4;
+            color: #49352f;
+            text-decoration: none;
+            padding: 9px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .map-button:hover {
+            background-color: #f08075;
+            color: white;
+        }
+
+        footer {
+            background-color: #f08075;
+            color: white;
+            text-align: center;
+            padding: 22px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            nav {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+
+            #map {
+                height: 350px;
+            }
+
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Header -->
+    <header>
+        <a href="home.html" class="logo">
+            Discover Shibuya <span></span>
+        </a>
+
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="map.html" class="active">Places to Visit</a>
+            <a href="dining.html">Food & Culture</a>
+        </nav>
+    </header>
+
+    <!-- Page Introduction -->
+    <section class="page-intro">
+        <p class="subtitle">EXPLORE TOKYO, JAPAN</p>
+
+        <h1>Places to <span>Visit</span></h1>
+
+        <p class="description">
+            If you are planning to visit Shibuya, the map below can
+            help you find places to explore. Each location has
+            something different to offer, so you can choose
+            somewhere that sounds interesting to you.
+        </p>
+    </section>
+
+    <main>
+
+        <!-- Interactive Map Section -->
+        <section>
+            <div class="section-heading">
+                <h2>Explore Shibuya </h2>
+                <p>Select a marker to learn more about that place.</p>
+            </div>
+
+            <div id="map"></div>
+
+            <p class="map-note">
+                Map data © OpenStreetMap contributors
+            </p>
+        </section>
+
+        <!-- Places to Visit -->
+        <section>
+            <div class="places-heading">
+                <p class="subtitle">GETTING TO KNOW SHIBUYA</p>
+                <h2>Popular Places to Visit</h2>
+            </div>
+
+            <div class="places-grid">
+
+                <article class="place-card">
+                    <span class="place-number">1</span>
+
+                    <h3>Shibuya Scramble Crossing</h3>
+
+                    <p>
+                        Shibuya Scramble Crossing is one of the
+                        best-known spots in Tokyo. It is always
+                        busy, especially when the lights change
+                        and people begin crossing the street.
+                    </p>
+
+                    <button class="map-button" onclick="showPlace(0)">
+                        Find on Map →
+                    </button>
+                </article>
+
+                <article class="place-card">
+                    <span class="place-number">2</span>
+
+                    <h3>SHIBUYA SKY</h3>
+
+                    <p>
+                        SHIBUYA SKY gives visitors a view of Tokyo
+                        from high above the city. On a clear day,
+                        you can see far across the skyline, making
+                        it a nice place to take photos.
+                    </p>
+
+                    <button class="map-button" onclick="showPlace(1)">
+                        Find on Map →
+                    </button>
+                </article>
+
+                <article class="place-card">
+                    <span class="place-number">3</span>
+
+                    <h3>Shibuya PARCO</h3>
+
+                    <p>
+                        Shibuya PARCO is a shopping center that
+                        is especially interesting for people who
+                        enjoy Japanese pop culture. It is worth
+                        visiting if you want to see something a
+                        little different while in Shibuya.
+                    </p>
+
+                    <button class="map-button" onclick="showPlace(2)">
+                        Find on Map →
+                    </button>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p> Discover Shibuya · Your Tokyo Travel Guide </p>
+    </footer>
+
+    <!-- Leaflet Map JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        const map = L.map('map').setView([35.6595, 139.7005], 15);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        const places = [
+            {
+                name: 'Shibuya Scramble Crossing',
+                coordinates: [35.6595, 139.7005],
+                description: 'Shibuya Scramble Crossing is a well-known spot where large crowds cross the street at once.'
+            },
+            {
+                name: 'SHIBUYA SKY',
+                coordinates: [35.6585, 139.7013],
+                description: 'SHIBUYA SKY lets visitors see Tokyo from a rooftop observation deck.'
+            },
+            {
+                name: 'Shibuya PARCO',
+                coordinates: [35.6615, 139.6983],
+                description: 'Shibuya PARCO is a shopping center popular with fans of Japanese pop culture.'
+            }
+        ];
+
+        const markers = [];
+
+        places.forEach(function(place) {
+            const marker = L.marker(place.coordinates).addTo(map);
+
+            marker.bindPopup(
+                '<strong>' + place.name + '</strong><br>' +
+                place.description
+            );
+
+            markers.push(marker);
+        });
+
+        function showPlace(index) {
+            const place = places[index];
+
+            map.setView(place.coordinates, 17);
+            markers[index].openPopup();
+
+            document.getElementById('map').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+    </script>
+
+</body>
+</html>
