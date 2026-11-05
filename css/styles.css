@@ -1,0 +1,260 @@
+/* General Page Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --coral: #f08075;
+    --dark-coral: #d96359;
+    --light-yellow: #fff3c4;
+    --cream: #fffaf0;
+    --dark-brown: #49352f;
+    --white: #ffffff;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--cream);
+    color: var(--dark-brown);
+    line-height: 1.7;
+}
+
+/* Navigation Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 8%;
+    background-color: var(--light-yellow);
+    border-bottom: 3px solid var(--coral);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--dark-brown);
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--coral);
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--dark-brown);
+    font-size: 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--dark-coral);
+}
+
+/* Main Welcome Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 75px 8%;
+    background-color: var(--light-yellow);
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 520px;
+}
+
+.subtitle {
+    color: var(--dark-coral);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: clamp(38px, 4.5vw, 58px);
+    line-height: 1.2;
+    margin-bottom: 22px;
+}
+
+h1 span {
+    color: var(--dark-coral);
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 30px;
+    max-width: 480px;
+}
+
+/* Explore Button */
+.button {
+    display: inline-block;
+    background-color: var(--coral);
+    color: var(--white);
+    text-decoration: none;
+    padding: 13px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+    background-color: var(--dark-coral);
+    transform: translateY(-3px);
+}
+
+/* Featured Image */
+.hero-image {
+    flex: 1;
+    max-width: 550px;
+    position: relative;
+}
+
+.hero-image img {
+    display: block;
+    width: 100%;
+    height: 390px;
+    object-fit: cover;
+    border-radius: 45% 45% 15px 15px;
+    border: 6px solid var(--white);
+    box-shadow: 0 10px 25px rgba(73, 53, 47, 0.12);
+}
+
+.image-label {
+    position: absolute;
+    bottom: 18px;
+    left: 18px;
+    background-color: var(--white);
+    padding: 10px 16px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Introduction Section */
+.intro {
+    text-align: center;
+    padding: 65px 20px 35px;
+    max-width: 750px;
+    margin: auto;
+}
+
+.intro h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.intro > p:last-child {
+    font-size: 16px;
+}
+
+/* Category Cards */
+.categories {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: 20px auto 70px;
+    padding: 0 25px;
+}
+
+.category-card {
+    display: block;
+    padding: 30px;
+    background-color: var(--white);
+    border: 2px solid var(--light-yellow);
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--dark-brown);
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--coral);
+}
+
+.card-icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.category-card h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.category-card p {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.card-link {
+    color: var(--dark-coral);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--coral);
+    color: var(--white);
+    text-align: center;
+    padding: 22px;
+    font-size: 14px;
+}
+
+/* Mobile-Friendly Layout */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    nav {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .hero {
+        flex-direction: column;
+        padding: 45px 25px;
+        gap: 35px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-image {
+        width: 100%;
+    }
+
+    .hero-image img {
+        height: 300px;
+    }
+
+    .categories {
+        grid-template-columns: 1fr;
+        margin-bottom: 45px;
+    }
+
+    .intro {
+        padding: 45px 25px 25px;
+    }
+}
